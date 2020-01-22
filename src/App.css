@@ -1,6 +1,69 @@
 .App {
-  text-align: center;
+  /*text-align: center;*/
 }
+
+.form-wrapper {
+  border: 1px solid #ced4da;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 30px;
+  margin: 30px;
+}
+
+.form-check-inline{
+  margin-left: 15px;
+}
+
+.label-float{
+  font-weight: 700;
+  position: absolute;
+  top: -34px;
+  z-index: 1;
+  background: #cce4fc;
+}
+
+.form-row {
+  border: 1px solid #164a8d;
+  padding: 20px;
+  border-radius: 9px;
+  margin: 30px 0;
+}
+
+.border-alert{
+  border: 1px solid #db3648;
+}
+
+.form-wrapper .alert-warning {
+  font-size: 12px;
+}
+
+.form-success-wrapper {
+  border: 1px solid #ced4da;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.footer-disclaimer, .update-information-date {
+  font-size: 9px;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.estimate-row {
+  font-size: 21px;
+  padding: 20px 0;
+}
+
+.estimate-total {
+  font-weight: 900;
+}
+
+/*.form-horizontal label {*/
+  /*font-weight: 700;*/
+/*}*/
 
 .App-logo {
   height: 40vmin;

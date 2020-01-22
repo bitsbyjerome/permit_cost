@@ -1,4 +1,4 @@
-class Saskatchewan {
+class Manitoba {
 
 
     getRegularPermitCost = (tripDetails) =>{
@@ -19,4 +19,4 @@ class Saskatchewan {
 
 //{results:true, body:{message:''}}
 
-export default Saskatchewan;
+export default Manitoba;
