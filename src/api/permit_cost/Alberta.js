@@ -44,5 +44,9 @@ class Alberta {
 //{results:true, body:{message:''}}
 //http://www.qp.alberta.ca/documents/Regs/2002_315.pdf
 //https://wideloadshipping.com/alberta-shipping-regulations/#.XirpARrQhQI
+//http://www.transportation.alberta.ca/Content/docType281/production/Tractor-semi-trailer.pdf
+//https://www.transportation.alberta.ca/4783.htm
+//https://www.alberta.ca/weight-and-dimensions-regulations.aspx
+//https://www.calgary.ca/Transportation/Roads/Pages/Traffic/Permits/Over-dimensional-load-permit.aspx
 
 export default Alberta;
