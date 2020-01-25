@@ -1,4 +1,14 @@
 class NorthwestTerritories {
+    UNLADEN_TRUCK_IRP_PRICE = 75;
+    //UNLADEN_TRUCK_TRAILER_IRP_PRICE = 24;
+    LADEN_TRUCK_IRP_PRICE = 75;
+    LADEN_TRUCK_TRAILER_IRP_PRICE = 75;
+    REGULAR_PERMIT_LENGTH = '5 DAYS';
+    //OVERSIZE_PERMIT_LENGTH  = '10 DAYS';
+    IFTA_FLAT_FEE = 59;
+    //IFTA_RATE_PER_KM = 0.13;
+
+
 
 
     getRegularPermitCost = (tripDetails) =>{

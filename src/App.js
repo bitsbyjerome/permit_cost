@@ -265,7 +265,7 @@ class App extends React.Component {
           return (
               <div className="App container">
                   <div className='form-wrapper container'>
-                      <h4 className='text-primary text-center'>Temporary Trip Permit Cost Simulator</h4>
+                      <h4 className='text-primary text-center'>Temporary trip permit cost estimator</h4>
                       <hr/>
                       <br/>
                       <form className='form-horizontal alert alert-primary'>
@@ -285,7 +285,7 @@ class App extends React.Component {
                           <div className={`form-row form-group ${validationErrors.province.length > 0 && 'border-alert'}`}>
 
                               <div className="col-md-4">
-                                  <label htmlFor="province" className={`label-float ${validationErrors.province.length >0 &&'text-danger'}`}>Where are you heading?</label>
+                                  <label htmlFor="province" className={`label-float ${validationErrors.province.length >0 &&'text-danger'}`}>Where are you going?</label>
                                   <select id="province" name="province" className="form-control" onChange={(e)=>this.handleFormChange(e)}>
                                       <option value={`${null}`}>Click to choose a destination province</option>
                                       {optionItems}
@@ -319,7 +319,7 @@ class App extends React.Component {
 
                           <div className={`form-row form-group ${validationErrors.regWeight.length > 0 && 'border-alert'}`}>
                               <div className='col-md-12'>
-                                <label className={`label-float ${validationErrors.regWeight.length >0 &&'text-danger'}`}>Is your truck registered weight equal or over 11797kgs / 80 000 lbs?</label>
+                                <label className={`label-float ${validationErrors.regWeight.length >0 &&'text-danger'}`}>Is your truck registered weight equal or over 11 794 kgs / 26 000 lbs?</label>
                               </div>
                               <div className="form-check form-check-inline">
                                   <input className="form-check-input" type="radio" name="regWeight" id="regWeightYes"
@@ -406,7 +406,7 @@ class App extends React.Component {
                                       <input className="form-check-input" type="radio" name="truckType"
                                              id="unladenTruck"
                                              value="unladen_truck" onClick={this.handleFormChange}/>
-                                      <label className="form-check-label" htmlFor="">Unladen Straight Truck</label>
+                                      <label className="form-check-label" htmlFor="">Unladen Straight Truck or Truck/tractor with Trailer</label>
                                   </div>
 
                                   <div className="form-check form-check-inline">
@@ -456,7 +456,7 @@ class App extends React.Component {
                           <br/>
                             <hr/>
                           <div className='footer-button text-center'>
-                              <button type="submit" className="btn btn-lg btn-primary" onClick={this.handleFormSubmit}>Get Estimate</button>
+                              <button type="submit" className="btn btn-lg btn-primary" onClick={this.handleFormSubmit}>Calculate Estimate</button>
                           </div>
                            </form>
                       <div className='footer-credit row'>
@@ -523,20 +523,8 @@ class App extends React.Component {
                            <div className='col'>
                                <div className='col-sm-12'>
                                    <div className='alert alert-info'>
-                                       <b>Trip Details</b>
-                                       <p>
-                                         Destination: {this.state.province}
-                                         <br/>
-                                         Permit Type: {this.state.permitType}
-                                           <br/>
-                                         IFTA: {this.state.regIfta}
-                                           <br/>
-                                         IRP: {this.state.regIrp}
-                                           <br/>
-                                         Vehicle Configuration: {this.state.truckType}
-                                         <br/>
-                                         <br/>
-                                       </p>
+                                       <b>Additional Information</b>
+                                       <p>{permitCost.information}</p>
                                        {/*<div className=''>*/}
                                            {/*<button type="button" className="btn btn-lg btn-outline-info" onClick={this.handleStartOverBtnClick}>Email this estimate</button>*/}
                                        {/*</div>*/}
@@ -551,7 +539,11 @@ class App extends React.Component {
                   <div className='row row-cols-1'>
                     <div className='col'>
                         <div className='form-wrapper text-center'>
-                            <button type="button" className="btn btn-lg btn-success" onClick={this.handleStartOverBtnClick}>ORDER NOW</button>
+                            <div className='title text-center'>Trip Details</div>
+                            <span>Destination: {this.state.province}</span>
+                            <span> Permit Type: {this.state.permitType}</span>
+                            <span> Truck has IFTA: {this.state.regIfta}</span>
+                            <span> Truck has IRP: {this.state.regIrp}</span>
                         </div>
                         <br/>
                       <span className='footer-disclaimer'>Disclaimer:The information contained in these pages about single trip, oversize and overweight permit, is research information primarily for use by trucking company drivers, dispatchers and pilot car companies. While every effort is put into maintaining the accuracy of this information you must absolutely verify this information with the Province DOT Permits office or a permit agency before commencing movement.
