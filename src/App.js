@@ -18,6 +18,7 @@ class App extends React.Component {
 
     constructor(props){
         super(props);
+
         this.state = {loading:false, showMainForm:true,
                       showResultForm:false, showInputKms:false,
                       showNoResultForm:false, showInputVehicleConfig:false,
@@ -35,6 +36,8 @@ class App extends React.Component {
                       permitTypeSelectedOption:''
                       }
         }
+
+        this.handleStartOverBtnClick  = this.handleStartOverBtnClick.bind(this);
     };
 
     resetState = () =>{
@@ -115,6 +118,9 @@ class App extends React.Component {
         return valid;
     };
 
+    handleStartOverBtnClick = () => {
+        this.resetState();
+    };
 
     validateForm = (errors) => {
         let valid = false;
@@ -125,9 +131,7 @@ class App extends React.Component {
         return valid;
     };
 
-    handleStartOverBtnClick = () => {
-        this.resetState();
-    };
+
     handleProvinceChange = (e) => {
       this.setState({province: e.target.value === 'null'?null:e.target.value}, (e)=>this.performFormValidation(e));
     };
@@ -558,7 +562,7 @@ class App extends React.Component {
         )
 
       }else if(showNoResultForm){
-          return(<NoResultForm message={permitCost.body.message}/>);
+          return(<NoResultForm startOver={this.handleStartOverBtnClick} message={permitCost.body.message}/>);
       }else if(loading){
           return(
               <div className='App'>
