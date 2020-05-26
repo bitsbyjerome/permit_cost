@@ -107,7 +107,13 @@ class Ontario{
             };
 
         }else{
-            return {message:'Temporary permit is not required'}
+            return {
+                body:{
+                    message:'Temporary permit is not required',
+                },
+                results: false,
+                action: 'noResults'
+            }
         }
 
     };

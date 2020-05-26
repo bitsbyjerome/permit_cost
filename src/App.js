@@ -144,7 +144,7 @@ class App extends React.Component {
           this.setState({showMainForm:false});
           let cost = new Cost();
           permitCost = cost.getPermitCostByProvince(this.state.province, this.state);
-          console.log('Permit Cost is :' + JSON.stringify(permitCost));
+          //console.log('Permit Cost is :' + JSON.stringify(permitCost));
 
           if(permitCost.action === 'results'){
               this.setState({showResultForm:true})
@@ -171,7 +171,7 @@ class App extends React.Component {
                 }
                 if(value !== null ){
 
-                        this.setState({...this.state, province:value, validationErrors:{...this.state.validationErrors, province:''} });
+                    this.setState({...this.state, province:value, validationErrors:{...this.state.validationErrors, province:''} });
                 }
                 break;
 
@@ -273,18 +273,6 @@ class App extends React.Component {
                       <hr/>
                       <br/>
                       <form className='form-horizontal alert alert-primary'>
-
-                          {/*<div className="form-row form-group">*/}
-
-                              {/*<div className="col-md-4">*/}
-                                  {/*<label htmlFor="regProvince">Where is the truck registered?</label>*/}
-                                  {/*<select id="inputState" className="form-control" onChange={this.handleProvinceChang}>*/}
-                                      {/*<option value='null'>Click to choose a destination province</option>*/}
-                                      {/*{optionItems}*/}
-                                  {/*</select>*/}
-                              {/*</div>*/}
-
-                          {/*</div>*/}
 
                           <div className={`form-row form-group ${validationErrors.province.length > 0 && 'border-alert'}`}>
 
@@ -514,7 +502,7 @@ class App extends React.Component {
 
                             <div className='col'>
                                 <div className='estimate-row'>
-                                    CAD$ {permitCost.body.iftaPrice} <sup><i>({permitCost.tripDetails.amountKms} * {permitCost.body.iftaRate})</i></sup>
+                                    CAD$ {permitCost.body.iftaPrice} <sup><i>({permitCost.tripDetails.amountKms?permitCost.body.iftaPrice:0} * {permitCost.body.iftaRate})</i></sup>
                                 </div>
                                 <div className='estimate-row'>
                                     CAD$ {permitCost.body.irpPrice}
@@ -599,6 +587,8 @@ class App extends React.Component {
 //TODO: Log queries to DB
 //TODO: Hook contact form to mail service
 //TODO: Translation
+//TODO: Implement localstorage
+
 
 
 

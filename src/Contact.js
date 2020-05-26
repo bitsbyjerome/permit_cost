@@ -12,29 +12,6 @@ class Contact extends Component {
                     <h4 className='text-primary text-center'>Use the form below to contact us or submit suggestions</h4>
                     <form className='form-horizontal alert alert-primary'>
 
-                        {/*<div className="form-row form-group">*/}
-
-                        {/*<div className="col-md-4">*/}
-                        {/*<label htmlFor="regProvince">Where is the truck registered?</label>*/}
-                        {/*<select id="inputState" className="form-control" onChange={this.handleProvinceClick}>*/}
-                        {/*<option value='null'>Click to choose a destination province</option>*/}
-                        {/*</select>*/}
-                        {/*</div>*/}
-
-                        {/*</div>*/}
-
-                        {/*<div className="form-row form-group">*/}
-
-                            {/*<div className="col-md-4">*/}
-                                {/*<label htmlFor="inputState" className='label-float'>Where are you heading?</label>*/}
-                                {/*<select id="inputState" className="form-control" onChange={this.handleProvinceClick}>*/}
-                                    {/*<option value='null'>Click to choose a destination province</option>*/}
-
-                                {/*</select>*/}
-                            {/*</div>*/}
-
-                        {/*</div>*/}
-
 
                         <div className="form-row form-group">
 

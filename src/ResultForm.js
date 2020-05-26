@@ -33,7 +33,7 @@ const resultForm = (permitCost)=> <div className='App'>
 
                         <div className='col'>
                             <div className='estimate-row'>
-                                CAD$ {permitCost.body.iftaPrice} <sup><i>(Kms * 0.089)</i></sup>
+                                CAD$ {permitCost.body.iftaPrice?permitCost.body.iftaPrice:0} <sup><i>(Kms * 0.089)</i></sup>
                             </div>
                             <div className='estimate-row'>
                                 CAD$ {permitCost.body.irpPrice}
