@@ -294,15 +294,15 @@ class App extends React.Component {
                                 <label className={`label-float ${validationErrors.permitType.length >0 &&'text-danger'}`}>What type of permit do you need?</label>
                               </div>
                               <div className="form-check form-check-inline">
-                                  <input className="form-check-input" type="radio" name="permitType" id="permitOversize"
+                                  <input className="form-check-input" type="radio" name="permitType" id="permitOversize" disabled
                                          value="oversize" onClick={this.handleFormChange} defaultChecked={this.state.permitType === 'oversize'}/>
-                                  <label className="form-check-label" htmlFor="permitType" >Oversize</label>
+                                  <label className="form-check-label" for="permitOversize" >Oversize</label>
                               </div>
 
                               <div className="form-check form-check-inline">
                                   <input className="form-check-input" type="radio" name="permitType" id="permitRegular"
                                          value="regular" onClick={this.handleFormChange} defaultChecked={this.state.permitType === 'regular'}/>
-                                  <label className="form-check-label" htmlFor="permitType">Regular</label>
+                                  <label className="form-check-label" for="permitRegular">Regular</label>
                               </div>
                               <div className="col-md-12">
                                   {validationErrors.permitType.length > 0 && <span className="text-danger">{validationErrors.permitType}</span>}
@@ -316,13 +316,13 @@ class App extends React.Component {
                               <div className="form-check form-check-inline">
                                   <input className="form-check-input" type="radio" name="regWeight" id="regWeightYes"
                                          value="yes" onClick={this.handleFormChange}/>
-                                  <label className="form-check-label" htmlFor="regWeigh">Yes</label>
+                                  <label className="form-check-label" for="regWeightYes">Yes</label>
                               </div>
 
                               <div className="form-check form-check-inline">
                                   <input className="form-check-input" type="radio" name="regWeight" id="regWeightNo"
                                          value="no" onClick={this.handleFormChange}/>
-                                  <label className="form-check-label" htmlFor="regWeigh">No</label>
+                                  <label className="form-check-label" for="regWeightNo">No</label>
                               </div>
                               <div className="col-md-12">
                                   {validationErrors.regWeight.length > 0 && <span className="text-danger">{validationErrors.regWeight}</span>}
@@ -340,13 +340,13 @@ class App extends React.Component {
                               <div className="form-check form-check-inline">
                                   <input className="form-check-input" type="radio" name="regIfta" id="iftaYes"
                                          value="yes" onClick={this.handleFormChange}/>
-                                  <label className="form-check-label" htmlFor="regIfta">Yes</label>
+                                  <label className="form-check-label" for="iftaYes">Yes</label>
                               </div>
 
                               <div className="form-check form-check-inline">
                                   <input className="form-check-input" type="radio" name="regIfta" id="iftaNo"
                                          value="no" onClick={this.handleFormChange}/>
-                                  <label className="form-check-label" htmlFor="regIfta">No</label>
+                                  <label className="form-check-label" for="iftaNo">No</label>
                               </div>
                               <div className="col-md-12">
                                   {validationErrors.regIfta.length > 0 && <span className="text-danger">{validationErrors.regIfta}</span>}
@@ -356,7 +356,7 @@ class App extends React.Component {
                               <div className={`form-row form-group ${validationErrors.amountKms.length > 0 && 'border-alert'}`}>
 
                                   <div className="col-md-12">
-                                      <label htmlFor="amountKms" className={`label-float ${validationErrors.amountKms.length > 0 && 'text-danger'}`}>Amount of kilometers from entry point to destination</label>
+                                      <label htmlFor="kms" className={`label-float ${validationErrors.amountKms.length > 0 && 'text-danger'}`}>Amount of kilometers from entry point to destination</label>
                                   </div>
                                   <div className='col-md-4'>
                                       <input type="number" name="amountKms" id="kms" className="form-control" onChange={this.handleFormChange}/>
@@ -375,13 +375,13 @@ class App extends React.Component {
                               <div className="form-check form-check-inline">
                                   <input className="form-check-input" type="radio" name="regIrp" id="irpYes"
                                          value="yes" onClick={this.handleFormChange}/>
-                                  <label className="form-check-label" htmlFor="regIrp">Yes</label>
+                                  <label className="form-check-label" htmlFor="irpYes">Yes</label>
                               </div>
 
                               <div className="form-check form-check-inline">
                                   <input className="form-check-input" type="radio" name="regIrp" id="irpNo"
                                          value="no" onClick={this.handleFormChange}/>
-                                  <label className="form-check-label" htmlFor="regIrp">No</label>
+                                  <label className="form-check-label" htmlFor="irpNo">No</label>
                               </div>
                               <div className="col-md-12">
                                   {validationErrors.regIrp.length > 0 && <span className="text-danger">{validationErrors.regIrp}</span>}
@@ -398,20 +398,20 @@ class App extends React.Component {
                                       <input className="form-check-input" type="radio" name="truckType"
                                              id="unladenTruck"
                                              value="unladen_truck" onClick={this.handleFormChange}/>
-                                      <label className="form-check-label" htmlFor="">Unladen Straight Truck or Truck/tractor with Trailer</label>
+                                      <label className="form-check-label" htmlFor="unladenTruck">Unladen Straight Truck or Truck/tractor with Trailer</label>
                                   </div>
 
                                   <div className="form-check form-check-inline">
                                       <input className="form-check-input" type="radio" name="truckType" id="ladenTruck"
                                              value="laden_truck" onClick={this.handleFormChange}/>
-                                      <label className="form-check-label" htmlFor="">Laden Straight Truck</label>
+                                      <label className="form-check-label" htmlFor="ladenTruck">Laden Straight Truck</label>
                                   </div>
 
                                   <div className="form-check form-check-inline">
                                       <input className="form-check-input" type="radio" name="truckType"
                                              id="ladenTruckTrailer"
                                              value="laden_truck_trailer" onClick={this.handleFormChange}/>
-                                      <label className="form-check-label" htmlFor="">Laden Truck/Tractor & Trailer
+                                      <label className="form-check-label" htmlFor="ladenTruckTrailer">Laden Truck/Tractor & Trailer
                                           Vehicle</label>
                                   </div>
                                   <div className="col-md-12">
@@ -427,18 +427,18 @@ class App extends React.Component {
                               <div className="form-check form-check-inline">
                                   <input className="form-check-input" type="radio" name="tripInfo" id="oneWay"
                                          value="oneWay" onClick={this.handleFormChange}/>
-                                  <label className="form-check-label" htmlFor="tripInfo">One Way Trip</label>
+                                  <label className="form-check-label" htmlFor="oneWay">One Way Trip</label>
                               </div>
 
                               <div className="form-check form-check-inline">
                                   <input className="form-check-input" type="radio" name="tripInfo" id="roundTrip"
                                          value="roundTrip" onClick={this.handleFormChange}/>
-                                  <label className="form-check-label" htmlFor="tripInfo">Round Trip</label>
+                                  <label className="form-check-label" htmlFor="roundTrip">Round Trip</label>
                               </div>
                               <div className="form-check form-check-inline">
                                   <input className="form-check-input" type="radio" name="tripInfo" id="roundTripEmpty"
                                          value="roundTripEmpty" onClick={this.handleFormChange}/>
-                                  <label className="form-check-label" htmlFor="tripInfo">Round Trip (Empty Return)</label>
+                                  <label className="form-check-label" htmlFor="roundTripEmpty">Round Trip (Empty Return)</label>
                               </div>
                               <div className="col-md-12">
                                   {validationErrors.tripInfo.length > 0 && <span className="text-danger">{validationErrors.tripInfo}</span>}
@@ -502,7 +502,7 @@ class App extends React.Component {
 
                             <div className='col'>
                                 <div className='estimate-row'>
-                                    CAD$ {permitCost.body.iftaPrice} <sup><i>({permitCost.tripDetails.amountKms?permitCost.body.iftaPrice:0} * {permitCost.body.iftaRate})</i></sup>
+                                    CAD$ {permitCost.body.iftaPrice} <sup><i>({permitCost.tripDetails.amountKms?permitCost.tripDetails.amountKms+' kms':0} * {permitCost.body.iftaRate})</i></sup>
                                 </div>
                                 <div className='estimate-row'>
                                     CAD$ {permitCost.body.irpPrice}
