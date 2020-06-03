@@ -83,7 +83,7 @@ class App extends React.Component {
         }if(this.state.regWeight === 'no'){
             valid = false;
             setTimeout(()=>{
-                this.setState({validationErrors:{...this.state.validationErrors, regWeight:'If your truck registered weight is less than the indicated weight above, no temporary permits are required.'}});
+                this.setState({validationErrors:{...this.state.validationErrors, regWeight:'If your truck registered weight is less than the above indicated weight, and has less than 3 axles, no temporary permits are required.'}});
             })
 
         }if (this.state.regIfta ===  null){
@@ -182,7 +182,7 @@ class App extends React.Component {
                 }
                 if(value === 'no'){
                     return this.setState({regWeight:'no',
-                        validationErrors:{...this.state.validationErrors, regWeight:'If your truck registered weight is less than the indicated weight above, no temporary permits are required.'} })
+                        validationErrors:{...this.state.validationErrors, regWeight:'If your truck registered weight is less than the above indicated weight, and has less than 3 axles, no temporary permits are required.'} })
                 }
 
                 if(this.state.regIfta === 'yes' && this.state.regIrp === 'yes' && this.state.permitType === 'regular'){
