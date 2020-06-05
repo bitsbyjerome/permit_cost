@@ -9,13 +9,14 @@ class Ontario{
     IFTA_RATE_PER_KM = 0.089;
 
     getRegularPermitCost = (tripDetails) => {
-        console.log('trip details '+tripDetails);
+        //console.log('trip details '+tripDetails);
 
-        const {regIfta, regIrp, amountKms, truckType, tripInfo} = tripDetails;
+        let {regIfta, regIrp, amountKms, truckType, tripInfo} = tripDetails;
 
         let irpPrice = 0;
         let iftaPrice = amountKms * this.IFTA_RATE_PER_KM;
         iftaPrice = tripInfo.toLowerCase() === 'roundtrip'? Number(parseFloat(iftaPrice*2).toFixed(2)):Number(parseFloat(iftaPrice).toFixed(2));
+        amountKms = tripInfo.toLowerCase() === 'roundtrip'? (amountKms * 2): amountKms;
 
         if(regIfta === 'no' && regIrp === 'no'){
 
@@ -48,7 +49,8 @@ class Ontario{
                     unladenTruck:this.UNLADEN_TRUCK_IRP_PRICE,
                     ladenTruck:this.LADEN_TRUCK_IRP_PRICE,
                     permitDuration:this.REGULAR_PERMIT_LENGTH,
-                    tripInfo:tripInfo
+                    tripInfo:tripInfo,
+                    amountKms: amountKms
                 }
             };
 
@@ -80,7 +82,8 @@ class Ontario{
                     unladenTruck:this.UNLADEN_TRUCK_IRP_PRICE,
                     ladenTruck:this.LADEN_TRUCK_IRP_PRICE,
                     permitDuration:this.REGULAR_PERMIT_LENGTH,
-                    tripInfo:tripInfo
+                    tripInfo:tripInfo,
+                    amountKms: amountKms
                 }
             };
 
@@ -102,7 +105,8 @@ class Ontario{
                     unladenTruck:this.UNLADEN_TRUCK_IRP_PRICE,
                     ladenTruck:this.LADEN_TRUCK_IRP_PRICE,
                     permitDuration:this.REGULAR_PERMIT_LENGTH,
-                    tripInfo:tripInfo
+                    tripInfo:tripInfo,
+                    amountKms: amountKms
                 }
             };
 

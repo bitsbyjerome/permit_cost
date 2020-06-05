@@ -139,8 +139,8 @@ class App extends React.Component {
     handleFormSubmit = (e) => {
       e.preventDefault();
       if(this.performFormValidation()){
-          console.log('form is valid');
-          console.log(this.state);
+          //console.log('form is valid');
+          //console.log(this.state);
           this.setState({showMainForm:false});
           let cost = new Cost();
           permitCost = cost.getPermitCostByProvince(this.state.province, this.state);
@@ -246,6 +246,12 @@ class App extends React.Component {
               });
               break;
             case 'tripInfo':
+                if(value === 'roundTrip' || value === 'roundTripEmpty'){
+                   let amountKms = this.state.amountKms * 2;
+                    return this.setState({...this.state,tripInfo:value, amountKms:amountKms,
+                        validationErrors:{...this.state.validationErrors, tripInfo:''}
+                    });
+                }
                 return this.setState({...this.state,tripInfo:value,
                     validationErrors:{...this.state.validationErrors, tripInfo:''}
                 });
@@ -502,7 +508,7 @@ class App extends React.Component {
 
                             <div className='col'>
                                 <div className='estimate-row'>
-                                    CAD$ {permitCost.body.iftaPrice} <sup><i>({permitCost.tripDetails.amountKms?permitCost.tripDetails.amountKms+' kms':0} * {permitCost.body.iftaRate})</i></sup>
+                                    CAD$ {permitCost.body.iftaPrice} <sup><i>({permitCost.body.amountKms?permitCost.tripDetails.amountKms+' kms':0} * {permitCost.body.iftaRate})</i></sup>
                                 </div>
                                 <div className='estimate-row'>
                                     CAD$ {permitCost.body.irpPrice}
