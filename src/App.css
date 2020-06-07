@@ -63,6 +63,10 @@ body{
   font-weight: 900;
 }
 
+.btn-go-back{
+  padding: 0.8rem 5rem;
+}
+
 /*.form-horizontal label {*/
   /*font-weight: 700;*/
 /*}*/

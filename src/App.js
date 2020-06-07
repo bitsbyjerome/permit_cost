@@ -101,7 +101,7 @@ class App extends React.Component {
             setTimeout(()=>{
                 this.setState({validationErrors:{...this.state.validationErrors, truckType:'Please indicate the vehicle configuration'}});
                 }, 1000);
-        }if (this.state.tripInfo ===  null){
+        }if (this.state.tripInfo ===  null && this.state.regIfta ==='no'){
             valid = false;
             setTimeout(()=>{
                 this.setState({validationErrors:{...this.state.validationErrors, tripInfo:'Please indicate the type of trip'}});
@@ -471,72 +471,43 @@ class App extends React.Component {
             <div className='App'>
 
               <div className='container'>
+
                 <div className='form-wrapper'>
-                  <div className='form-success-wrapper'>
-
-                    <div className='container'>
-                        <h3 className='text-center text-success'>Cost Breakdown</h3>
-
-                      <br/>
-                      <br/>
-                        <div className='row row-cols-3'>
-                            <div className='col'>
-                                <div className='estimate-row'>
-                                    IFTA -------------------------
-                                </div>
-                                <div className='estimate-row'>
-                                    IRP -------------------------
-                                </div>
-                                <div className='estimate-row'>
-                                    TOTAL
-                                </div>
-                                <div className='estimate-row'>Permit validity : <strong>{permitCost.body.permitDuration}</strong></div>
-                                <div className='alert alert-warning'>
-                                  <b>Note</b><br/>
-                                  <sup>*</sup>This total might slightly differ from your invoice. It doesn't include taxes, service and administration fee.
-                                </div>
-                                <div className=''>
-                                    <button type="button" className="btn btn-lg btn-outline-info" onClick={this.handleStartOverBtnClick}>Go Back</button>
-                                </div>
-                            </div>
-
-                            <div className='col'>
-                                <div className='estimate-row'>
-                                    CAD$ {permitCost.body.iftaPrice} <sup><i>({permitCost.body.amountKms?permitCost.tripDetails.amountKms+' kms':0} * {permitCost.body.iftaRate})</i></sup>
-                                </div>
-                                <div className='estimate-row'>
-                                    CAD$ {permitCost.body.irpPrice}
-                                </div>
-                                <div className='estimate-row estimate-total'>
-                                    CAD$ {permitCost.body.totalPrice} <sup>*</sup>
-                                </div>
-                            </div>
-
-                           <div className='col'>
-                               <div className='col-sm-12'>
-                                   <div className='alert alert-info'>
-                                       <b>Additional Information</b>
-                                       <p>{permitCost.information}</p>
-                                       {/*<div className=''>*/}
-                                           {/*<button type="button" className="btn btn-lg btn-outline-info" onClick={this.handleStartOverBtnClick}>Email this estimate</button>*/}
-                                       {/*</div>*/}
-                                   </div>
-                                   <span className='update-information-date'>Cost formula last updated: December 28th 2019</span>
-                               </div>
-                           </div>
-                        </div>
+                    <h3 className='text-center text-success'>Cost Breakdown</h3>
+                    <table className="table">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>IFTA (International Fuel Tax Agreement)</td>
+                            <td>
+                                CAD$ {permitCost.body.iftaPrice} <sup><i>({permitCost.body.amountKms?permitCost.tripDetails.amountKms+' kms':0} * {permitCost.body.iftaRate})</i></sup>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>IRP (International Registration Plan)</td>
+                            <td>CAD$ {permitCost.body.irpPrice}</td>
+                        </tr>
+                        <tr>
+                            <td>Permit Total Price</td>
+                            <td>CAD$ {permitCost.body.totalPrice} <sup>*</sup></td>
+                        </tr>
+                        <tr>
+                            <td>Permit Validity</td>
+                            <td><strong>{permitCost.body.permitDuration}</strong></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div className='alert alert-warning'>
+                        <b>Note</b><br/>
+                        <sup>*</sup>This total might slightly differ from your invoice. It doesn't include taxes, service and administration fee.
+                    </div>
+                    <div className="row mx-auto justify-content-center">
+                        <button type="button" className="btn btn-go-back btn-lg btn-outline-info" onClick={this.handleStartOverBtnClick}>Go Back</button>
                     </div>
 
-                  </div>
                   <div className='row row-cols-1'>
                     <div className='col'>
-                        <div className='form-wrapper text-center'>
-                            <div className='title text-center'>Trip Details</div>
-                            <span>Destination: {this.state.province}</span>
-                            <span> Permit Type: {this.state.permitType}</span>
-                            <span> Truck has IFTA: {this.state.regIfta}</span>
-                            <span> Truck has IRP: {this.state.regIrp}</span>
-                        </div>
                         <br/>
                       <span className='footer-disclaimer'>Disclaimer:The information contained in these pages about single trip, oversize and overweight permit, is research information primarily for use by trucking company drivers, dispatchers and pilot car companies. While every effort is put into maintaining the accuracy of this information you must absolutely verify this information with the Province DOT Permits office or a permit agency before commencing movement.
                       </span>

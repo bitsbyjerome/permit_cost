@@ -7,6 +7,28 @@ const resultForm = (permitCost)=> <div className='App'>
             <div className='form-success-wrapper'>
 
                 <div className='container'>
+                    <table className="table">
+                        <thead>
+                        <tr>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th></th>
+                            <td>IFTA</td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>IRP</td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>Total</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
                     <h3 className='text-center text-success'>Cost Breakdown</h3>
 
                     <br/>
