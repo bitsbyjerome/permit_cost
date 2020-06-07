@@ -8,8 +8,6 @@ import {CircleLoader} from 'react-spinners';
 import NoResultForm from './NoResultForm';
 import {Link} from 'react-router-dom';
 
-{/* The following line can be included in your src/index.js or App.js file*/}
-
 
 let permitCost = {};
     const permitTypeOptions = [{value:'oversize', label:'Oversize'}, {value:'regular', label:'Regular'}];
@@ -42,14 +40,10 @@ class App extends React.Component {
 
     resetState = () =>{
         this.setState({
-            loading:false, showMainForm:true,
-            showResultForm:false, showInputKms:false,
-            regWeight:null, regIfta:null,
-            regIrp:null, amountKms:null,
-            truckType:null, permitType:null,
-            province:null, tripInfo:null,
-            permitTypeSelectedOption:null,
-            provinces:Provinces
+            ...this.validationErrors,
+            showMainForm:true,
+            showResultForm:false
+
         })
     };
 
@@ -113,8 +107,8 @@ class App extends React.Component {
                 this.setState({validationErrors:{...this.state.validationErrors, tripInfo:'Please indicate the type of trip'}});
                 }, 1000);
         }
-        console.log(this.state.validationErrors);
-        console.log(valid);
+        //console.log(this.state.validationErrors);
+        //console.log(valid);
         return valid;
     };
 
@@ -153,7 +147,7 @@ class App extends React.Component {
           }
 
       }else{
-          console.log('form is not valid');
+          console.warn('form is not valid');
       }
 
     };
@@ -161,8 +155,8 @@ class App extends React.Component {
     handleFormChange = (event) => {
         const {name, value} = event.target;
         //let errors = this.state.errors;
-        console.log(name);
-        console.log(value);
+        //console.log(name);
+        //console.log(value);
 
         switch (name) {
             case 'province':
@@ -262,16 +256,14 @@ class App extends React.Component {
     };
 
 
-
     render() {
       let {showMainForm, showResultForm, showNoResultForm, loading, showInputKms, showInputVehicleConfig} = this.state;
-      let optionItems = this.state.provinces.map((item) =><option key={item.abbreviation} value={item.abbreviation}>{item.name}</option>);
+      let optionItems = this.state.provinces.map((item)=><option selected={this.state.province === item.abbreviation } key={item.abbreviation} value={item.abbreviation}>{item.name}</option>);
       let permitTypeItems = permitTypeOptions.map((item) =>item.value);
-      //console.log(permitTypeItems);
+
       const {validationErrors} = this.state;
 
-      if(showMainForm) {
-
+      if(showMainForm){
           return (
               <div className="App container">
                   <div className='form-wrapper container'>
@@ -283,9 +275,9 @@ class App extends React.Component {
                           <div className={`form-row form-group ${validationErrors.province.length > 0 && 'border-alert'}`}>
 
                               <div className="col-md-4">
-                                  <label htmlFor="province" className={`label-float ${validationErrors.province.length >0 &&'text-danger'}`}>Where are you going?</label>
+                                  <label htmlFor="province" className={`label-float ${validationErrors.province.length >0 &&'text-danger'}`}>Choose the province you need permit for?</label>
                                   <select id="province" name="province" className="form-control" onChange={(e)=>this.handleFormChange(e)}>
-                                      <option value={`${null}`}>Click to choose a destination province</option>
+                                      <option>Click to choose a province</option>
                                       {optionItems}
                                   </select>
                               </div>
@@ -302,13 +294,13 @@ class App extends React.Component {
                               <div className="form-check form-check-inline">
                                   <input className="form-check-input" type="radio" name="permitType" id="permitOversize" disabled
                                          value="oversize" onClick={this.handleFormChange} defaultChecked={this.state.permitType === 'oversize'}/>
-                                  <label className="form-check-label" for="permitOversize" >Oversize</label>
+                                  <label className="form-check-label" htmlFor="permitOversize" >Oversize</label>
                               </div>
 
                               <div className="form-check form-check-inline">
                                   <input className="form-check-input" type="radio" name="permitType" id="permitRegular"
                                          value="regular" onClick={this.handleFormChange} defaultChecked={this.state.permitType === 'regular'}/>
-                                  <label className="form-check-label" for="permitRegular">Regular</label>
+                                  <label className="form-check-label" htmlFor="permitRegular">Regular</label>
                               </div>
                               <div className="col-md-12">
                                   {validationErrors.permitType.length > 0 && <span className="text-danger">{validationErrors.permitType}</span>}
@@ -321,14 +313,14 @@ class App extends React.Component {
                               </div>
                               <div className="form-check form-check-inline">
                                   <input className="form-check-input" type="radio" name="regWeight" id="regWeightYes"
-                                         value="yes" onClick={this.handleFormChange}/>
-                                  <label className="form-check-label" for="regWeightYes">Yes</label>
+                                         value="yes" onClick={this.handleFormChange} defaultChecked={this.state.regWeight==="yes"}/>
+                                  <label className="form-check-label" htmlFor="regWeightYes">Yes</label>
                               </div>
 
                               <div className="form-check form-check-inline">
                                   <input className="form-check-input" type="radio" name="regWeight" id="regWeightNo"
                                          value="no" onClick={this.handleFormChange}/>
-                                  <label className="form-check-label" for="regWeightNo">No</label>
+                                  <label className="form-check-label" htmlFor="regWeightNo">No</label>
                               </div>
                               <div className="col-md-12">
                                   {validationErrors.regWeight.length > 0 && <span className="text-danger">{validationErrors.regWeight}</span>}
@@ -345,30 +337,56 @@ class App extends React.Component {
                               </div>
                               <div className="form-check form-check-inline">
                                   <input className="form-check-input" type="radio" name="regIfta" id="iftaYes"
-                                         value="yes" onClick={this.handleFormChange}/>
-                                  <label className="form-check-label" for="iftaYes">Yes</label>
+                                         value="yes" onClick={this.handleFormChange} defaultChecked={this.state.regIfta === "yes"}/>
+                                  <label className="form-check-label" htmlFor="iftaYes">Yes</label>
                               </div>
 
                               <div className="form-check form-check-inline">
                                   <input className="form-check-input" type="radio" name="regIfta" id="iftaNo"
-                                         value="no" onClick={this.handleFormChange}/>
-                                  <label className="form-check-label" for="iftaNo">No</label>
+                                         value="no" onClick={this.handleFormChange} defaultChecked={this.state.regIfta === "no"}/>
+                                  <label className="form-check-label" htmlFor="iftaNo">No</label>
                               </div>
                               <div className="col-md-12">
                                   {validationErrors.regIfta.length > 0 && <span className="text-danger">{validationErrors.regIfta}</span>}
                               </div>
                           </div>
                           {showInputKms?
-                              <div className={`form-row form-group ${validationErrors.amountKms.length > 0 && 'border-alert'}`}>
+                              <div>
+                                  <div className={`form-row form-group ${validationErrors.amountKms.length > 0 && 'border-alert'}`}>
 
-                                  <div className="col-md-12">
-                                      <label htmlFor="kms" className={`label-float ${validationErrors.amountKms.length > 0 && 'text-danger'}`}>Amount of kilometers from entry point to destination</label>
+                                      <div className="col-md-12">
+                                          <label htmlFor="kms" className={`label-float ${validationErrors.amountKms.length > 0 && 'text-danger'}`}>Amount of kilometers from entry point to destination</label>
+                                      </div>
+                                      <div className='col-md-4'>
+                                          <input type="number" value={this.state.amountKms !== '' && this.state.amountKms } name="amountKms" id="kms" className="form-control" onChange={this.handleFormChange}/>
+                                      </div>
+                                      <div className="col-md-12">
+                                          {validationErrors.amountKms.length > 0 && <span className="text-danger">{validationErrors.amountKms}</span>}
+                                      </div>
                                   </div>
-                                  <div className='col-md-4'>
-                                      <input type="number" name="amountKms" id="kms" className="form-control" onChange={this.handleFormChange}/>
-                                  </div>
-                                  <div className="col-md-12">
-                                      {validationErrors.amountKms.length > 0 && <span className="text-danger">{validationErrors.amountKms}</span>}
+                                  <div className={`form-row form-group ${validationErrors.tripInfo.length > 0 && 'border-alert'}`}>
+                                      <div className='col-md-12'>
+                                          <label className={`label-float ${validationErrors.tripInfo.length > 0 && 'text-danger'}`}>Trip Information</label>
+                                      </div>
+                                      <div className="form-check form-check-inline">
+                                          <input className="form-check-input" type="radio" name="tripInfo" id="oneWay"
+                                                 value="oneWay" onClick={this.handleFormChange} defaultChecked={this.state.tripInfo === "oneWay"}/>
+                                          <label className="form-check-label" htmlFor="oneWay">One Way Trip</label>
+                                      </div>
+
+                                      <div className="form-check form-check-inline">
+                                          <input className="form-check-input" type="radio" name="tripInfo" id="roundTrip"
+                                                 value="roundTrip" onClick={this.handleFormChange} defaultChecked={this.state.tripInfo === "roundTrip"}/>
+                                          <label className="form-check-label" htmlFor="roundTrip">Round Trip</label>
+                                      </div>
+                                      <div className="form-check form-check-inline">
+                                          <input className="form-check-input" type="radio" name="tripInfo" id="roundTripEmpty"
+                                                 value="roundTripEmpty" onClick={this.handleFormChange} defaultChecked={this.state.tripInfo === "roundTripEmpty"}/>
+                                          <label className="form-check-label" htmlFor="roundTripEmpty">Round Trip (Empty Return)</label>
+                                      </div>
+                                      <div className="col-md-12">
+                                          {validationErrors.tripInfo.length > 0 && <span className="text-danger">{validationErrors.tripInfo}</span>}
+                                      </div>
                                   </div>
                               </div>
                               : ''
@@ -380,13 +398,13 @@ class App extends React.Component {
                               </div>
                               <div className="form-check form-check-inline">
                                   <input className="form-check-input" type="radio" name="regIrp" id="irpYes"
-                                         value="yes" onClick={this.handleFormChange}/>
+                                         value="yes" onClick={this.handleFormChange} defaultChecked={this.state.regIrp === "yes"}/>
                                   <label className="form-check-label" htmlFor="irpYes">Yes</label>
                               </div>
 
                               <div className="form-check form-check-inline">
                                   <input className="form-check-input" type="radio" name="regIrp" id="irpNo"
-                                         value="no" onClick={this.handleFormChange}/>
+                                         value="no" onClick={this.handleFormChange} defaultChecked={this.state.regIrp === "no"}/>
                                   <label className="form-check-label" htmlFor="irpNo">No</label>
                               </div>
                               <div className="col-md-12">
@@ -403,20 +421,20 @@ class App extends React.Component {
                                   <div className="form-check form-check-inline">
                                       <input className="form-check-input" type="radio" name="truckType"
                                              id="unladenTruck"
-                                             value="unladen_truck" onClick={this.handleFormChange}/>
+                                             value="unladen_truck" onClick={this.handleFormChange} defaultChecked={this.state.truckType === "unladen_truck"}/>
                                       <label className="form-check-label" htmlFor="unladenTruck">Unladen Straight Truck or Truck/tractor with Trailer</label>
                                   </div>
 
                                   <div className="form-check form-check-inline">
                                       <input className="form-check-input" type="radio" name="truckType" id="ladenTruck"
-                                             value="laden_truck" onClick={this.handleFormChange}/>
+                                             value="laden_truck" onClick={this.handleFormChange} defaultChecked={this.state.truckType === "laden_truck"}/>
                                       <label className="form-check-label" htmlFor="ladenTruck">Laden Straight Truck</label>
                                   </div>
 
                                   <div className="form-check form-check-inline">
                                       <input className="form-check-input" type="radio" name="truckType"
                                              id="ladenTruckTrailer"
-                                             value="laden_truck_trailer" onClick={this.handleFormChange}/>
+                                             value="laden_truck_trailer" onClick={this.handleFormChange} defaultChecked={this.state.truckType === "laden_truck_trailer"}/>
                                       <label className="form-check-label" htmlFor="ladenTruckTrailer">Laden Truck/Tractor & Trailer
                                           Vehicle</label>
                                   </div>
@@ -426,30 +444,6 @@ class App extends React.Component {
                               </div>
                               :""
                           }
-                          <div className={`form-row form-group ${validationErrors.tripInfo.length > 0 && 'border-alert'}`}>
-                              <div className='col-md-12'>
-                                  <label className={`label-float ${validationErrors.tripInfo.length > 0 && 'text-danger'}`}>Trip Information</label>
-                              </div>
-                              <div className="form-check form-check-inline">
-                                  <input className="form-check-input" type="radio" name="tripInfo" id="oneWay"
-                                         value="oneWay" onClick={this.handleFormChange}/>
-                                  <label className="form-check-label" htmlFor="oneWay">One Way Trip</label>
-                              </div>
-
-                              <div className="form-check form-check-inline">
-                                  <input className="form-check-input" type="radio" name="tripInfo" id="roundTrip"
-                                         value="roundTrip" onClick={this.handleFormChange}/>
-                                  <label className="form-check-label" htmlFor="roundTrip">Round Trip</label>
-                              </div>
-                              <div className="form-check form-check-inline">
-                                  <input className="form-check-input" type="radio" name="tripInfo" id="roundTripEmpty"
-                                         value="roundTripEmpty" onClick={this.handleFormChange}/>
-                                  <label className="form-check-label" htmlFor="roundTripEmpty">Round Trip (Empty Return)</label>
-                              </div>
-                              <div className="col-md-12">
-                                  {validationErrors.tripInfo.length > 0 && <span className="text-danger">{validationErrors.tripInfo}</span>}
-                              </div>
-                          </div>
 
                           <br/>
                             <hr/>
