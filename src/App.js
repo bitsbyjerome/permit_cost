@@ -451,14 +451,14 @@ class App extends React.Component {
                               <button type="submit" className="btn btn-lg btn-primary" onClick={this.handleFormSubmit}>Calculate Estimate</button>
                           </div>
                            </form>
-                      <div className='footer-credit row'>
-                          <div className='text-left col-sm-6'>
-                              <span className='text-left'><Link to={"/contact"}>Improve this tool</Link></span>
+                      <div className='footer-credit text-center row'>
+                          <div className='text-lg-left text-sm-center col-sm-6'>
+                              <span className='text-lg-left text-sm-center'><Link to={"/contact"}>Improve this tool</Link></span>
                           </div>
 
-                          <div className='text-right col-sm-6'>
-                              <span className='text-right'>Created by <a target='_blank' href='https://www.truckingartist.com' rel='noopener noreferrer'>TruckingArtist</a></span>
-                              <sup className='text-right'><em> version 1.0</em></sup>
+                          <div className='text-lg-right text-sm-center col-sm-6'>
+                              <span className='text-lg-right text-sm-center col'>Created by <a target='_blank' href='https://www.truckingartist.com' rel='noopener noreferrer'>TruckingArtist</a></span>
+                              <sup className='text-lg-right text-sm-center col'><em> version 1.0</em></sup>
                           </div>
                       </div>
                   </div>
@@ -489,7 +489,7 @@ class App extends React.Component {
                             <td>CAD$ {permitCost.body.irpPrice}</td>
                         </tr>
                         <tr>
-                            <td>Permit Total Price</td>
+                            <td>Estimated Total Price</td>
                             <td>CAD$ {permitCost.body.totalPrice} <sup>*</sup></td>
                         </tr>
                         <tr>
