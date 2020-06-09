@@ -21,7 +21,7 @@ class App extends React.Component {
                       showResultForm:false, showInputKms:false,
                       showNoResultForm:false, showInputVehicleConfig:false,
                       regWeight:null, regIfta:null,
-                      regIrp:null, amountKms:null,
+                      regIrp:null, amountKms:'',
                       truckType:null, permitType:null,
                       province:null, tripInfo:null,
                       provinces:Provinces,
@@ -59,17 +59,17 @@ class App extends React.Component {
     //     });
     performFormValidation = () => {
         let valid = true;
-        if(this.state.province === null){
+        if(!this.state.province){
             valid = false;
             setTimeout(()=>{
                 this.setState({validationErrors:{...this.state.validationErrors, province:'Please choose a province'}});
             },1000)
-        } if(this.state.permitType === null){
+        } if(!this.state.permitType){
             setTimeout(()=>{
                 this.setState({validationErrors:{...this.state.validationErrors, permitType:'Please choose a permit type'}});
             }, 1000)
 
-        } if(this.state.regWeight === null){
+        } if(!this.state.regWeight){
             valid = false;
             setTimeout(()=>{
                 this.setState({validationErrors:{...this.state.validationErrors, regWeight:'Please choose your truck registered weight'}});
@@ -81,28 +81,28 @@ class App extends React.Component {
                 this.setState({validationErrors:{...this.state.validationErrors, regWeight:'If your truck registered weight is less than the above indicated weight, and has less than 3 axles, no temporary permits are required.'}});
             })
 
-        }if (this.state.regIfta ===  null){
+        }if (!this.state.regIfta){
             valid = false;
             setTimeout(()=>{
                 this.setState({validationErrors:{...this.state.validationErrors, regIfta:'Please indicate if the truck has ifta'}});
                 }, 1000);
 
-        }if (this.state.amountKms ===  null && this.state.regIfta ==='no'){
+        }if (!this.state.amountKms && this.state.regIfta ==='no'){
             valid = false;
             setTimeout(()=>{
                 this.setState({validationErrors:{...this.state.validationErrors, amountKms:'Please indicate the amount of kms'}});
                 }, 1000);
-        }if (this.state.regIrp ===  null){
+        }if (!this.state.regIrp){
             valid = false;
             setTimeout(()=>{
                 this.setState({validationErrors:{...this.state.validationErrors, regIrp:'Please indicate if the truck has IRP'}});
                 }, 1000);
-        }if (this.state.truckType ===  null && this.state.regIrp ==='no'){
+        }if (!this.state.truckType && this.state.regIrp ==='no'){
             valid = false;
             setTimeout(()=>{
                 this.setState({validationErrors:{...this.state.validationErrors, truckType:'Please indicate the vehicle configuration'}});
                 }, 1000);
-        }if (this.state.tripInfo ===  null && this.state.regIfta ==='no'){
+        }if (!this.state.tripInfo && this.state.regIfta ==='no'){
             valid = false;
             setTimeout(()=>{
                 this.setState({validationErrors:{...this.state.validationErrors, tripInfo:'Please indicate the type of trip'}});
@@ -234,10 +234,10 @@ class App extends React.Component {
             case 'amountKms':
                // console.log(value);
                 if(value === ''){
-                    this.setState({amountKms:null,
+                    this.setState({amountKms:'',
                         validationErrors:{...this.state.validationErrors, amountKms:'Please indicate the amount of kilometers to be driven'}});
                 }else{
-                    this.setState({...this.state, amountKms:value===''?null:value,
+                    this.setState({...this.state, amountKms:value===''?'':value,
                         validationErrors:{...this.state.validationErrors, amountKms:''}
                     });
                 }
@@ -499,7 +499,7 @@ class App extends React.Component {
                             <td>IRP (International Registration Plan)</td>
                             <td>CAD$ {permitCost.body.irpPrice}</td>
                         </tr>
-                        <tr>
+                        <tr className="font-weight-bold">
                             <td>Estimated Total Price</td>
                             <td>CAD$ {permitCost.body.totalPrice} <sup>*</sup></td>
                         </tr>
@@ -520,7 +520,7 @@ class App extends React.Component {
                   <div className='row row-cols-1'>
                     <div className='col'>
                         <br/>
-                      <span className='footer-disclaimer'>Disclaimer:The information contained in these pages about single trip, oversize and overweight permit, is research information primarily for use by trucking company drivers, dispatchers and pilot car companies. While every effort is put into maintaining the accuracy of this information you must absolutely verify this information with the Province DOT Permits office or a permit agency before commencing movement.
+                      <span className='footer-disclaimer'>Disclaimer:The information contained in these pages about single trip, oversize and overweight permit, is research information primarily for use by trucking company drivers, dispatchers and pilot car companies. While every effort is put into maintaining the accuracy of this information you must absolutely verify this information with the Province Permit office or a permit agency before commencing movement.
                       </span>
                     </div>
                   </div>

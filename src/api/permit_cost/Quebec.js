@@ -13,7 +13,7 @@ class Quebec {
     ADMIN_FEE = 9.05;
 
     getRegularPermitCost = (tripDetails) => {
-        console.log(tripDetails);
+        //console.log(tripDetails);
 
         const {regIfta, regIrp, amountKms, truckType} = tripDetails;
 
