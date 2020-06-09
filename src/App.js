@@ -31,7 +31,8 @@ class App extends React.Component {
                       regIrp:'', amountKms:'',
                       truckType:'', permitType:'',
                       province:'', tripInfo:'',
-                      permitTypeSelectedOption:''
+                      permitTypeSelectedOption:'',
+                      formValidationMessage:''
                       }
         }
 
@@ -148,6 +149,11 @@ class App extends React.Component {
 
       }else{
           console.warn('form is not valid');
+          this.setState({
+              validationErrors:{
+                  ...this.state.validationErrors, formValidationMessage:'Error! The form cannot be submitted. Please review your inputs and try again'
+              }
+          })
       }
 
     };
@@ -448,6 +454,9 @@ class App extends React.Component {
                           <br/>
                             <hr/>
                           <div className='footer-button text-center'>
+                              <div className="col-md-12">
+                                  {validationErrors.formValidationMessage.length > 0 && <span className="text-danger">{validationErrors.formValidationMessage}</span>}
+                              </div>
                               <button type="submit" className="btn btn-lg btn-primary" onClick={this.handleFormSubmit}>Calculate Estimate</button>
                           </div>
                            </form>

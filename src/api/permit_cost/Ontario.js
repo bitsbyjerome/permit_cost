@@ -15,8 +15,11 @@ class Ontario{
 
         let irpPrice = 0;
         let iftaPrice = amountKms * this.IFTA_RATE_PER_KM;
-        iftaPrice = tripInfo.toLowerCase() === 'roundtrip'? Number(parseFloat(iftaPrice*2).toFixed(2)):Number(parseFloat(iftaPrice).toFixed(2));
-        amountKms = tripInfo.toLowerCase() === 'roundtrip'? (amountKms * 2): amountKms;
+        if(tripInfo){
+            iftaPrice = tripInfo.toLowerCase() === 'roundtrip'? Number(parseFloat(iftaPrice*2).toFixed(2)):Number(parseFloat(iftaPrice).toFixed(2));
+
+            amountKms = tripInfo.toLowerCase() === 'roundtrip'? (amountKms * 2): amountKms;
+        }
 
         if(regIfta === 'no' && regIrp === 'no'){
 
