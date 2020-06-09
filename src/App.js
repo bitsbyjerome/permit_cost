@@ -61,19 +61,20 @@ class App extends React.Component {
         let valid = true;
         if(!this.state.province){
             valid = false;
+
             setTimeout(()=>{
                 this.setState({validationErrors:{...this.state.validationErrors, province:'Please choose a province'}});
-            },1000)
+            },1)
         } if(!this.state.permitType){
             setTimeout(()=>{
                 this.setState({validationErrors:{...this.state.validationErrors, permitType:'Please choose a permit type'}});
-            }, 1000)
+            }, 1)
 
         } if(!this.state.regWeight){
             valid = false;
             setTimeout(()=>{
                 this.setState({validationErrors:{...this.state.validationErrors, regWeight:'Please choose your truck registered weight'}});
-                }, 1000);
+                }, 1);
 
         }if(this.state.regWeight === 'no'){
             valid = false;
@@ -85,28 +86,28 @@ class App extends React.Component {
             valid = false;
             setTimeout(()=>{
                 this.setState({validationErrors:{...this.state.validationErrors, regIfta:'Please indicate if the truck has ifta'}});
-                }, 1000);
+                }, 1);
 
         }if (!this.state.amountKms && this.state.regIfta ==='no'){
             valid = false;
             setTimeout(()=>{
                 this.setState({validationErrors:{...this.state.validationErrors, amountKms:'Please indicate the amount of kms'}});
-                }, 1000);
+                }, 1);
         }if (!this.state.regIrp){
             valid = false;
             setTimeout(()=>{
                 this.setState({validationErrors:{...this.state.validationErrors, regIrp:'Please indicate if the truck has IRP'}});
-                }, 1000);
+                }, 1);
         }if (!this.state.truckType && this.state.regIrp ==='no'){
             valid = false;
             setTimeout(()=>{
                 this.setState({validationErrors:{...this.state.validationErrors, truckType:'Please indicate the vehicle configuration'}});
-                }, 1000);
+                }, 1);
         }if (!this.state.tripInfo && this.state.regIfta ==='no'){
             valid = false;
             setTimeout(()=>{
                 this.setState({validationErrors:{...this.state.validationErrors, tripInfo:'Please indicate the type of trip'}});
-                }, 1000);
+                }, 1);
         }
         return valid;
     };
@@ -156,110 +157,105 @@ class App extends React.Component {
 
     handleFormChange = (event) => {
         const {name, value} = event.target;
-        setTimeout(
-            ()=>{
-                this.setState({
-                    validationErrors:{...this.state.validationErrors, formValidationMessage:''}
-                });
-            },1000
-        )
 
+        this.setState({
+            validationErrors:{...this.state.validationErrors, formValidationMessage:''}
+        }, ()=>{
+            switch (name) {
+                case 'province':
+                    if(value === 'null'){
+                        this.setState({province:null, validationErrors:{...this.state.validationErrors, province:'Please select a province'}})
+                    }
+                    if(value !== null ){
 
-        //console.log('clear state')
-        switch (name) {
-            case 'province':
-                if(value === 'null'){
-                    this.setState({province:null, validationErrors:{...this.state.validationErrors, province:'Please select a province'}})
-                }
-                if(value !== null ){
+                        this.setState({...this.state, province:value, validationErrors:{...this.state.validationErrors, province:''} });
+                    }
+                    break;
 
-                    this.setState({...this.state, province:value, validationErrors:{...this.state.validationErrors, province:''} });
-                }
-                break;
-
-            //validation: Registered Weight
-            case 'regWeight':
-                if(value !== null){
-                    this.setState({validationErrors:{...this.state.validationErrors, regWeight:''}})
-                }
-                if(value === 'no'){
-                    return this.setState({regWeight:'no',
-                        validationErrors:{...this.state.validationErrors, regWeight:'If your truck registered weight is less than the above indicated weight, and has less than 3 axles, no temporary permits are required.'} })
-                }
-
-                if(this.state.regIfta === 'yes' && this.state.regIrp === 'yes' && this.state.permitType === 'regular'){
-                    return this.setState({showResultForm:true, showMainForm:false, permitType:'regular'})
-                }
-                this.setState({regWeight:'yes'});
-                break;
-
-            //validation: IFTA
-            case 'regIfta':
-                if(value === 'no'){
-                    this.setState({...this.state, regIfta:'no', showInputKms:true,
-                        validationErrors:{...this.state.validationErrors, regIfta:''}
-                    });
-                }else if(value === 'yes'){
-                    this.setState({...this.state, regIfta:'yes', showInputKms:false,
-                        validationErrors:{...this.state.validationErrors, regIfta:''}
-                    });
-                }
-                break;
-            //validation: IRP
-            case 'regIrp':
-                if(value === 'no'){
-                    return this.setState({...this.state, regIrp:'no', showInputVehicleConfig:true,
-                        validationErrors:{...this.state.validationErrors, regIrp:''}
-                    });
-                }
-                return this.setState({...this.state,regIrp:'yes', showInputVehicleConfig:false,
-                    validationErrors:{...this.state.validationErrors, regIrp:''}
-                });
-
-            //validation: Permit Type
-            case 'permitType':
-                if(value !== null){
-                    this.setState({validationErrors:{...this.state.validationErrors, permitType:''}})
-                }
-                if(value === 'regular'){
-                    if(this.state.regWeight === 'yes' && this.state.regIfta === 'yes'
-                        && this.state.regIrp === 'yes'){
-                        this.setState({showResultForm:true, showMainForm:false, permitType:'regular'});
+                //validation: Registered Weight
+                case 'regWeight':
+                    if(value !== null){
+                        this.setState({validationErrors:{...this.state.validationErrors, regWeight:''}})
+                    }
+                    if(value === 'no'){
+                        return this.setState({regWeight:'no',
+                            validationErrors:{...this.state.validationErrors, regWeight:'If your truck registered weight is less than the above indicated weight, and has less than 3 axles, no temporary permits are required.'} })
                     }
 
-                    return this.setState({permitType:'regular'})
-                }
-                this.setState({permitType:'oversize'});
-                break;
-            case 'amountKms':
-               // console.log(value);
-                if(value === ''){
-                    this.setState({amountKms:'',
-                        validationErrors:{...this.state.validationErrors, amountKms:'Please indicate the amount of kilometers to be driven'}});
-                }else{
-                    this.setState({...this.state, amountKms:value===''?'':value,
-                        validationErrors:{...this.state.validationErrors, amountKms:''}
+                    if(this.state.regIfta === 'yes' && this.state.regIrp === 'yes' && this.state.permitType === 'regular'){
+                        return this.setState({showResultForm:true, showMainForm:false, permitType:'regular'})
+                    }
+                    this.setState({regWeight:'yes'});
+                    break;
+
+                //validation: IFTA
+                case 'regIfta':
+                    if(value === 'no'){
+                        this.setState({...this.state, regIfta:'no', showInputKms:true,
+                            validationErrors:{...this.state.validationErrors, regIfta:''}
+                        });
+                    }else if(value === 'yes'){
+                        this.setState({...this.state, regIfta:'yes', showInputKms:false,
+                            validationErrors:{...this.state.validationErrors, regIfta:''}
+                        });
+                    }
+                    break;
+                //validation: IRP
+                case 'regIrp':
+                    if(value === 'no'){
+                        return this.setState({...this.state, regIrp:'no', showInputVehicleConfig:true,
+                            validationErrors:{...this.state.validationErrors, regIrp:''}
+                        });
+                    }
+                    return this.setState({...this.state,regIrp:'yes', showInputVehicleConfig:false,
+                        validationErrors:{...this.state.validationErrors, regIrp:''}
                     });
-                }
-              break;
-            case 'truckType':
-              this.setState({...this.state,truckType:value,
-                  validationErrors:{...this.state.validationErrors, truckType:''}
-              });
-              break;
-            case 'tripInfo':
-                if(value === 'roundTrip' || value === 'roundTripEmpty'){
-                   let amountKms = this.state.amountKms * 2;
-                    return this.setState({...this.state,tripInfo:value, amountKms:amountKms,
+
+                //validation: Permit Type
+                case 'permitType':
+                    if(value !== null){
+                        this.setState({validationErrors:{...this.state.validationErrors, permitType:''}})
+                    }
+                    if(value === 'regular'){
+                        if(this.state.regWeight === 'yes' && this.state.regIfta === 'yes'
+                            && this.state.regIrp === 'yes'){
+                            this.setState({showResultForm:true, showMainForm:false, permitType:'regular'});
+                        }
+
+                        return this.setState({permitType:'regular'})
+                    }
+                    this.setState({permitType:'oversize'});
+                    break;
+                case 'amountKms':
+                    // console.log(value);
+                    if(value === ''){
+                        this.setState({amountKms:'',
+                            validationErrors:{...this.state.validationErrors, amountKms:'Please indicate the amount of kilometers to be driven'}});
+                    }else{
+                        this.setState({...this.state, amountKms:value===''?'':value,
+                            validationErrors:{...this.state.validationErrors, amountKms:''}
+                        });
+                    }
+                    break;
+                case 'truckType':
+                    this.setState({...this.state,truckType:value,
+                        validationErrors:{...this.state.validationErrors, truckType:''}
+                    });
+                    break;
+                case 'tripInfo':
+                    if(value === 'roundTrip' || value === 'roundTripEmpty'){
+                        let amountKms = this.state.amountKms * 2;
+                        return this.setState({...this.state,tripInfo:value, amountKms:amountKms,
+                            validationErrors:{...this.state.validationErrors, tripInfo:''}
+                        });
+                    }
+                    return this.setState({...this.state,tripInfo:value,
                         validationErrors:{...this.state.validationErrors, tripInfo:''}
                     });
-                }
-                return this.setState({...this.state,tripInfo:value,
-                    validationErrors:{...this.state.validationErrors, tripInfo:''}
-                });
-            default:
-                return this.state;
-        }
+                default:
+                    return this.state;
+            }
+        })
 
     };
 
@@ -570,6 +566,7 @@ class App extends React.Component {
 //TODO: Hook contact form to mail service
 //TODO: Translation
 //TODO: Implement localstorage
+//TODO: Add test
 
 
 
