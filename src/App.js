@@ -108,8 +108,6 @@ class App extends React.Component {
                 this.setState({validationErrors:{...this.state.validationErrors, tripInfo:'Please indicate the type of trip'}});
                 }, 1000);
         }
-        //console.log(this.state.validationErrors);
-        //console.log(valid);
         return valid;
     };
 
@@ -117,14 +115,14 @@ class App extends React.Component {
         this.resetState();
     };
 
-    validateForm = (errors) => {
-        let valid = false;
-
-        Object.values(errors).forEach(
-            (val) => val.length <= 0 && (valid = false)
-        );
-        return valid;
-    };
+    // validateForm = (errors) => {
+    //     let valid = false;
+    //
+    //     Object.values(errors).forEach(
+    //         (val) => val.length <= 0 && (valid = false)
+    //     );
+    //     return valid;
+    // };
 
 
     handleProvinceChange = (e) => {
@@ -134,8 +132,6 @@ class App extends React.Component {
     handleFormSubmit = (e) => {
       e.preventDefault();
       if(this.performFormValidation()){
-          //console.log('form is valid');
-          //console.log(this.state);
           this.setState({showMainForm:false});
           let cost = new Cost();
           permitCost = cost.getPermitCostByProvince(this.state.province, this.state);
@@ -148,7 +144,7 @@ class App extends React.Component {
           }
 
       }else{
-          console.warn('form is not valid');
+          //console.warn('form is not valid');
           this.setState({
               validationErrors:{
                   ...this.state.validationErrors, formValidationMessage:'Error! The form cannot be submitted. Please review your inputs and try again'
@@ -160,10 +156,16 @@ class App extends React.Component {
 
     handleFormChange = (event) => {
         const {name, value} = event.target;
-        //let errors = this.state.errors;
-        //console.log(name);
-        //console.log(value);
+        setTimeout(
+            ()=>{
+                this.setState({
+                    validationErrors:{...this.state.validationErrors, formValidationMessage:''}
+                });
+            },1000
+        )
 
+
+        //console.log('clear state')
         switch (name) {
             case 'province':
                 if(value === 'null'){
@@ -230,7 +232,7 @@ class App extends React.Component {
                 this.setState({permitType:'oversize'});
                 break;
             case 'amountKms':
-                console.log(value);
+               // console.log(value);
                 if(value === ''){
                     this.setState({amountKms:null,
                         validationErrors:{...this.state.validationErrors, amountKms:'Please indicate the amount of kilometers to be driven'}});
@@ -457,7 +459,7 @@ class App extends React.Component {
                               <div className="col-md-12">
                                   {validationErrors.formValidationMessage.length > 0 && <span className="text-danger">{validationErrors.formValidationMessage}</span>}
                               </div>
-                              <button type="submit" className="btn btn-lg btn-primary" onClick={this.handleFormSubmit}>Calculate Estimate</button>
+                              <button type="submit" className={`btn btn-lg btn-primary ${validationErrors.formValidationMessage.length >0 &&"btn-danger"}`} onClick={this.handleFormSubmit}>Calculate Estimate</button>
                           </div>
                            </form>
                       <div className='footer-credit text-center row'>
@@ -563,7 +565,7 @@ class App extends React.Component {
 //TODO: Report issue tool
 //TODO: Add information panel (i.e: MB required return trip permit)
 //TODO: Add registered province
-//TODO: Add multipe destinations
+//TODO: Add multiple destinations
 //TODO: Log queries to DB
 //TODO: Hook contact form to mail service
 //TODO: Translation
