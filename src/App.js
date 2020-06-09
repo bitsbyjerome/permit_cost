@@ -280,7 +280,7 @@ class App extends React.Component {
 
                           <div className={`form-row form-group ${validationErrors.province.length > 0 && 'border-alert'}`}>
 
-                              <div className="col-md-4">
+                              <div className="col-md-8 col-lg-6">
                                   <label htmlFor="province" className={`label-float ${validationErrors.province.length >0 &&'text-danger'}`}>Choose the province you need permit for?</label>
                                   <select id="province" name="province" className="form-control" onChange={(e)=>this.handleFormChange(e)}>
                                       <option>Click to choose a province</option>
