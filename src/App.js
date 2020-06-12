@@ -48,15 +48,6 @@ class App extends React.Component {
         })
     };
 
-    // performFormValidation = () => {
-    //     Object.entries(this.state.formComponents).forEach(([key, value]) => {
-    //         value === null ? this.setState({
-    //             validationErrors: {
-    //                 ...this.state.validationErrors,
-    //                 key: 'Please choose an option'
-    //             }
-    //         }) : '';
-    //     });
     performFormValidation = () => {
         let valid = true;
         if(!this.state.province){
@@ -548,8 +539,6 @@ class App extends React.Component {
 }
 
 //result Type
-//IFTA_IRP_TRUCK : Good news, you don't need temporary permit to r
-//getPermitCost(province)
 //TODO: front-end validation
 //TODO: Handle metrics such as miles and kms
 //TODO: Display IRP price next to item choice, to help buyers make informed decision
