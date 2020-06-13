@@ -107,15 +107,6 @@ class App extends React.Component {
         this.resetState();
     };
 
-    // validateForm = (errors) => {
-    //     let valid = false;
-    //
-    //     Object.values(errors).forEach(
-    //         (val) => val.length <= 0 && (valid = false)
-    //     );
-    //     return valid;
-    // };
-
 
     handleProvinceChange = (e) => {
       this.setState({province: e.target.value === 'null'?null:e.target.value}, (e)=>this.performFormValidation(e));
