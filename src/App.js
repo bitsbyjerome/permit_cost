@@ -529,7 +529,6 @@ class App extends React.Component {
 
 }
 
-//result Type
 //TODO: front-end validation
 //TODO: Handle metrics such as miles and kms
 //TODO: Display IRP price next to item choice, to help buyers make informed decision
@@ -542,11 +541,10 @@ class App extends React.Component {
 //TODO: Add information panel (i.e: MB required return trip permit)
 //TODO: Add registered province
 //TODO: Add multiple destinations
-//TODO: Log queries to DB
-//TODO: Hook contact form to mail service
+// TODO: Hook contact form to mail service
 //TODO: Translation
 //TODO: Implement localstorage
-//TODO: Add test
+//TODO: Implemented unit testing
 
 
 
