@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from "react-router-dom";
 
 class Contact extends Component {
 
@@ -33,7 +34,7 @@ class Contact extends Component {
                         <div className="form-row form-group">
 
                             <div className="col-md-12">
-                                <label htmlFor="" className='label-float'>Message</label>
+                                <label className='label-float'>Message</label>
                                 <textarea className="form-control form-control-lg" rows={5}></textarea>
                             </div>
 
@@ -47,7 +48,7 @@ class Contact extends Component {
                         </div>
                     </form>
                     <div>
-                        <a href='/'>Go back</a>
+                        <Link to={'/'}>Go back</Link>
                     </div>
                 </div>
 

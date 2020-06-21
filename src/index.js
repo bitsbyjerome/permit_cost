@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {Route, Link, BrowserRouter as Router} from 'react-router-dom';
+import {Route, BrowserRouter as Router} from 'react-router-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Contact from './Contact';
+import Contact from './components/Contact';
 
 const routing = (
     <Router>

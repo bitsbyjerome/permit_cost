@@ -100,6 +100,7 @@ class App extends React.Component {
                 this.setState({validationErrors:{...this.state.validationErrors, tripInfo:'Please indicate the type of trip'}});
                 }, 1);
         }
+        console.log(this.state)
         return valid;
     };
 
@@ -143,6 +144,7 @@ class App extends React.Component {
         this.setState({
             validationErrors:{...this.state.validationErrors, formValidationMessage:''}
         }, ()=>{
+            console.log(this.state);
             switch (name) {
                 case 'province':
                     if(value === 'null'){
