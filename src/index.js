@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {Route, BrowserRouter as Router} from 'react-router-dom';
+import {Route, Switch, BrowserRouter as Router} from 'react-router-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Contact from './components/Contact';
@@ -9,8 +9,10 @@ import Contact from './components/Contact';
 const routing = (
     <Router>
         <div>
-            <Route exact path="/" component={App}/>
-            <Route path="/contact" component={Contact}/>
+            <Switch>
+                <Route exact path="/" component={App}/>
+                <Route path="/contact" component={Contact}/>
+            </Switch>
         </div>
     </Router>
 );

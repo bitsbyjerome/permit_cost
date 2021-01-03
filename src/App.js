@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-//import logo from './logo.svg';
 import './App.css';
 import Provinces from './Provinces';
 import Cost from './api/permit_cost/Cost';
@@ -464,7 +463,7 @@ class App extends React.Component {
               <div className='container'>
 
                 <div className='form-wrapper'>
-                    <h3 className='text-center text-success'>Cost Breakdown</h3>
+                    <h3 className='text-center text-success'>{`Cost Breakdown for ${this.state.province}`} </h3>
                     <table className="table">
                         <thead>
                         </thead>
@@ -472,7 +471,7 @@ class App extends React.Component {
                         <tr>
                             <td>IFTA (International Fuel Tax Agreement)</td>
                             <td>
-                                CAD$ {permitCost.body.iftaPrice} <sup><i>({permitCost.body.amountKms?permitCost.tripDetails.amountKms+' kms':0} * {permitCost.body.iftaRate})</i></sup>
+                                CAD$ {permitCost.body.iftaPrice} <sup><i>{permitCost.body.amountKms?'('+permitCost.tripDetails.amountKms+' kms * '+permitCost.body.iftaRate + ')':''}</i></sup>
                             </td>
                         </tr>
                         <tr>
