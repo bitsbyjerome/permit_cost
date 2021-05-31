@@ -99,7 +99,7 @@ class App extends React.Component {
                 this.setState({validationErrors:{...this.state.validationErrors, tripInfo:'Please indicate the type of trip'}});
                 }, 1);
         }
-        console.log(this.state)
+        //console.log(this.state)
         return valid;
     };
 
