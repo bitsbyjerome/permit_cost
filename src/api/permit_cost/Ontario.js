@@ -116,7 +116,8 @@ class Ontario{
         }else{
             return {
                 body:{
-                    message:'Temporary permit is not required',
+
+                    message:'Temporary permit may not be required. However based on your vehicle type (i.e: a bus), a temporary 10 days permit can be required to travel in Ontario. Please contact Permitszon Canada to learn more',
                 },
                 results: false,
                 action: 'noResults'

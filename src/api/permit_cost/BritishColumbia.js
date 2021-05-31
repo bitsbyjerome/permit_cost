@@ -2,17 +2,35 @@ class BritishColumbia {
 
 
     getRegularPermitCost = (tripDetails) =>{
+        let {regIfta, regIrp, amountKms, truckType, tripInfo} = tripDetails;
+
+        if(regIfta === 'yes' && regIrp==='yes'){
+
+            return {
+                body:{
+                    message:'Temporary trip & fuel permit may not be required. However a temporary insurance may be required to travel in British Columbia. Please contact Permitszon Canada to learn more'
+                    },
+                results: false,
+                action: 'noResults'
+            }
+
+        }
+
 
         return{results: false, action:'noResults',
-            body: { message:' We are currently unable to provide you with an estimate, based on your search parameters. Please contact one of our permit agent to get an estimate ' +
-                    'for your load'}
+            body: {
+
+                message:' We are currently unable to provide you with an estimate, based on your search parameters. Please contact one of our permit agent to get an estimate ' +
+                    'for your load'
+        }
         }
     };
 
     getOversizePermitCost = (tripDetails) =>{
         return{results: false, action:'noResults',
             body: { message:' We are currently unable to provide you with an estimate, based on your search parameters. Please contact one of our permit agent to get an estimate ' +
-                    'for your load'}
+                    'for your load'
+                    }
         }
     }
 }
