@@ -1,7 +1,7 @@
 {
   "name": "permit-estimator",
   "version": "0.1.0",
-  "homepage": "https://demo.truckingartist.com",
+  "homepage": "https://calculator.truckingartist.com",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -20,7 +20,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy-production": "react-scripts build && scp -r ./build/* root@truckingartist.com:/var/www/truckingartist.com/public_html/demo/permit_cost/"
+    "deploy-production": ""
 
   },
   "eslintConfig": {
