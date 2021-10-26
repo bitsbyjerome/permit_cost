@@ -84,7 +84,7 @@ class Ontario{
                     iftaRate:this.IFTA_RATE_PER_KM,
                     unladenTruck:this.UNLADEN_TRUCK_IRP_PRICE,
                     ladenTruck:this.LADEN_TRUCK_IRP_PRICE,
-                    permitDuration:this.SHORT_TRIP_PERMIT_LENGTH,
+                    permitDuration:this.REGULAR_PERMIT_LENGTH,
                     tripInfo:tripInfo,
                     amountKms: amountKms
                 }
