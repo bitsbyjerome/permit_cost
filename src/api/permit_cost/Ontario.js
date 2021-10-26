@@ -1,15 +1,15 @@
 class Ontario{
 
-    UNLADEN_TRUCK_IRP_PRICE = 23;
-    LADEN_TRUCK_IRP_PRICE = 114;
-    LADEN_TRUCK_TRAILER_IRP_PRICE = 201;
-    REGULAR_PERMIT_LENGTH = '10 DAYS';
-    OVERSIZE_PERMIT_LENGTH  = '10 DAYS';
-    IFTA_MINIMUM_FEE = 5;
-    IFTA_RATE_PER_KM = 0.089;
+    UNLADEN_TRUCK_IRP_PRICE         = 23;
+    LADEN_TRUCK_IRP_PRICE           = 114;
+    LADEN_TRUCK_TRAILER_IRP_PRICE   = 201;
+    REGULAR_PERMIT_LENGTH           = '10 DAYS';
+    SHORT_TRIP_PERMIT_LENGTH        = '3 DAYS'
+    OVERSIZE_PERMIT_LENGTH          = '10 DAYS';
+    IFTA_MINIMUM_FEE                = 5;
+    IFTA_RATE_PER_KM                = 0.089;
 
     getRegularPermitCost = (tripDetails) => {
-        //console.log('trip details '+tripDetails);
 
         let {regIfta, regIrp, amountKms, truckType, tripInfo} = tripDetails;
 
@@ -84,7 +84,7 @@ class Ontario{
                     iftaRate:this.IFTA_RATE_PER_KM,
                     unladenTruck:this.UNLADEN_TRUCK_IRP_PRICE,
                     ladenTruck:this.LADEN_TRUCK_IRP_PRICE,
-                    permitDuration:this.REGULAR_PERMIT_LENGTH,
+                    permitDuration:this.SHORT_TRIP_PERMIT_LENGTH,
                     tripInfo:tripInfo,
                     amountKms: amountKms
                 }
@@ -107,7 +107,7 @@ class Ontario{
                     iftaRate:this.IFTA_RATE_PER_KM,
                     unladenTruck:this.UNLADEN_TRUCK_IRP_PRICE,
                     ladenTruck:this.LADEN_TRUCK_IRP_PRICE,
-                    permitDuration:this.REGULAR_PERMIT_LENGTH,
+                    permitDuration:this.SHORT_TRIP_PERMIT_LENGTH,
                     tripInfo:tripInfo,
                     amountKms: amountKms
                 }
